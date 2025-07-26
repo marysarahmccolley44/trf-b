@@ -40,50 +40,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $fbPixel = $_COOKIE['pixel'] ?? '';
   $subid = $_POST['subid'] ?? '';
 
-  $post_data = [
-    "landing_name" => $nameOffer,
-    "ip" => $ip,
-    'source' => 'google',
-    'full_name' => $name . ' ' . $last,
-    'email' => $email,
-    'landing' => $domain,
+  // New API data structure according to .cursorrules
+  $data = array(
+    "firstName" => $name,
+    "lastName" => $last,
+    "email" => $email,
+    "phone" => $phone,
     "country" => $summ,
-    'phone' => str_replace('+', '', $phone),
-    'pixel' => $fbPixel,
-    'description' => $comment,
-    'keitaro_id' => $subid,
-    'user_id' => '70',
-    'lang' => 'en',
+    "lang" => "EN",
+    "marker" => isset($_GET['marker']) ? $_GET['marker'] : "",
+    "offer" => $nameOffer,
+    "domain" => $domain,
+    "ip" => $ip,
+    "sub_id_1" => isset($_GET['sub_id_1']) ? $_GET['sub_id_1'] : "",
+    "sub_id_2" => isset($_GET['sub_id_2']) ? $_GET['sub_id_2'] : "",
+    "sub_id_3" => isset($_GET['sub_id_3']) ? $_GET['sub_id_3'] : $_SERVER['HTTP_USER_AGENT'],
+    "sub_id_4" => isset($_GET['sub_id_4']) ? $_GET['sub_id_4'] : (isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : ""),
+    "utm_medium" => isset($_GET['utm_medium']) ? $_GET['utm_medium'] : "",
+    "utm_content" => isset($_GET['utm_content']) ? $_GET['utm_content'] : "",
+    "utm_campaign" => isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : "",
+    "utm_source" => isset($_GET['utm_source']) ? $_GET['utm_source'] : "",
+    "utm_term" => isset($_GET['utm_term']) ? $_GET['utm_term'] : ""
+  );
 
-  ];
+  // Log submitted data
+  file_put_contents('log_submit_data2.txt', date('Y-m-d H:i:s', strtotime('+3 hours')).PHP_EOL .print_r($data, true).PHP_EOL, FILE_APPEND);
 
 
 
-  $newPost = json_encode($post_data, true);
-
+  // New API cURL configuration according to .cursorrules
   $curl = curl_init();
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://crm.traffic-g.live/api/leads',
+    CURLOPT_URL => 'https://slm.api.vibero.tech/clients/lead',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 3,
-    CURLOPT_TIMEOUT => 3,              // Зменшено з 10 до 3 секунд
-    CURLOPT_CONNECTTIMEOUT => 2,       // Зменшено з 5 до 2 секунд
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 3,              // Keep optimized 3 second timeout
+    CURLOPT_CONNECTTIMEOUT => 2,       // Keep optimized 2 second connect timeout
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS => http_build_query($post_data),
+    CURLOPT_POSTFIELDS => json_encode($data), // JSON format
     CURLOPT_HTTPHEADER => array(
-      'Accept: application/json',
-      'Content-Type: application/x-www-form-urlencoded'
+      'x-api-key: Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ',
+      'Content-Type: application/json'
     ),
-    CURLOPT_NOSIGNAL => 1,             // Додано для кращої продуктивності
-    CURLOPT_TCP_NODELAY => 1,          // Вимкнути алгоритм Nagle
+    CURLOPT_NOSIGNAL => 1,             // Keep performance optimization
+    CURLOPT_TCP_NODELAY => 1,          // Keep performance optimization
   ));
 
   $response = curl_exec($curl);
   $crm_time = microtime(true);
   $performance_log .= "CRM API completed: " . number_format($crm_time - $start_time, 4) . "s\n";
+
+  // Log API response
+  file_put_contents('log_submit_data.txt', date('Y-m-d H:i:s', strtotime('+2 hours')).PHP_EOL .'RESPONSE: '.print_r($response, true).PHP_EOL.PHP_EOL, FILE_APPEND);
+
+  // Log leads in tab-separated format
+  file_put_contents('log_submit_data_leads.txt', date("Y-m-d H:i:s")."\t".json_decode('"'.str_replace('"', '\\"', json_encode($data)).'"')."\t".$response.PHP_EOL, FILE_APPEND);
+
+  // Conversion tracking (if subid is available)
+  if (!empty($subid)) {
+    file_get_contents('https://investhorizon.biz/click?cnv_id=' . urlencode($subid) . '&payout=0&cnv_status=lead');
+  }
 
   curl_close($curl);
 
@@ -119,32 +138,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     return $response;
   }
 
-  $chatId1 = "-1002022816437";
-  $token1 = "7175616144:AAEbkPLZkqLEXdL0NUa1oqcoRRou_aa0Gqo";
-  $message1 = "🤖 <b>НОВИЙ ЛІД - QuantumAI</b> 🤖\n\n" .
-              "👤 <b>Ім'я:</b> $name\n" .
-              "👤 <b>Прізвище:</b> $last\n" .
-              "📱 <b>Телефон:</b> $phone\n" .
-              "📧 <b>Email:</b> $email\n" .
-              "🌍 <b>Країна:</b> $summ\n" .
+  $chatId1 = "-100_SHAT_ID";
+  $token1 = "botfather_TOKEN";
+  $message1 = "🚀 <b>НОВИЙ ЛІД - QuantumAI</b> 🚀\n\n" .
+              "👤 <b>Ім'я:</b> " . $data['firstName'] . "\n" .
+              "👤 <b>Прізвище:</b> " . $data['lastName'] . "\n" .
+              "📱 <b>Телефон:</b> " . $data['phone'] . "\n" .
+              "📧 <b>Email:</b> " . $data['email'] . "\n" .
+              "🌍 <b>Країна:</b> " . $data['country'] . "\n" .
               "📞 <b>Код країни:</b> $messageT\n" .
-              "🌐 <b>IP адреса:</b> $ip\n" .
+              "🌐 <b>IP адреса:</b> " . $data['ip'] . "\n" .
               "💬 <b>Коментар:</b> " . ($comment ?: 'Немає') . "\n" .
-              "🔗 <b>Домен:</b> $domain\n\n" .
+              "🔗 <b>Домен:</b> " . $data['domain'] . "\n\n" .
               "⏰ <b>Час:</b> " . date('Y-m-d H:i:s');
 
-  $chatId2 = "-1002514536713";
-  $token2 = "8024703814:AAEHGtZ9JToh9azbQ4ExrOb7m_UVk5Yizh0";
-  $message2 = "🤖 <b>НОВИЙ ЛІД - QuantumAI</b> 🤖\n\n" .
-              "👤 <b>Ім'я:</b> $name\n" .
-              "👤 <b>Прізвище:</b> $last\n" .
-              "📱 <b>Телефон:</b> $phone\n" .
-              "📧 <b>Email:</b> $email\n" .
-              "🌍 <b>Країна:</b> $summ\n" .
+  $chatId2 = "-100_SHAT_ID";
+  $token2 = "botfather_TOKEN";
+  $message2 = "💼 <b>НОВИЙ ЛІД</b> 💼\n\n" .
+              "👤 <b>Ім'я:</b> " . $data['firstName'] . "\n" .
+              "👤 <b>Прізвище:</b> " . $data['lastName'] . "\n" .
+              "📱 <b>Телефон:</b> " . $data['phone'] . "\n" .
+              "📧 <b>Email:</b> " . $data['email'] . "\n" .
+              "🌍 <b>Країна:</b> " . $data['country'] . "\n" .
               "📞 <b>Код країни:</b> $messageT\n" .
-              "🌐 <b>IP адреса:</b> $ip\n" .
+              "🌐 <b>IP адреса:</b> " . $data['ip'] . "\n" .
               "💬 <b>Коментар:</b> " . ($comment ?: 'Немає') . "\n" .
-              "🔗 <b>Домен:</b> $domain\n\n" .
+              "🔗 <b>Домен:</b> " . $data['domain'] . "\n\n" .
               "⏰ <b>Час:</b> " . date('Y-m-d H:i:s');
 
   $result1 = sendTelegramMessage($chatId1, $token1, $message1);

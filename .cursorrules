@@ -1,0 +1,223 @@
+# TRF-G Development Context Rules
+
+## Project Overview
+This repository contains multiple Canadian landing page projects for financial products (Magnumator, QuantumAI) with CRM integration, Telegram notifications, and tracking pixel functionality.
+
+## Key Performance Requirements
+- Form submission redirects must complete within 1-2 seconds maximum
+- All projects use optimized cURL timeouts: CRM API 3s, Telegram 1s
+- Telegram messages use HTML formatting with emojis
+- Performance logging is enabled in all projects via performance_log.txt
+
+## Project Structure
+```
+CA/
+├── ca-carney-cbc-magnumator-goverment/     # Reference project
+└── trfg/                                   # TRFG projects group
+    ├── ca-mark-carney-new-cbc-magnumator/
+    ├── ca-mark-carney-new-cbc-magnumator-video/
+    ├── ca-quantum-ai-cbc-2/
+    └── ca-quantumai-cbc/
+```
+
+## Critical Implementation Details
+
+### API.php Optimization Standards
+- CURLOPT_TIMEOUT: 3 seconds (CRM API)
+- CURLOPT_CONNECTTIMEOUT: 2 seconds (CRM API)
+- Telegram timeouts: 1 second each
+- Performance logging with microtime() tracking
+- HTML formatted Telegram messages with emojis
+
+### Form Flow Requirements
+1. User fills form in index.php
+2. Fast redirect to api.php (no delays)
+3. api.php processes data → CRM + Telegram
+4. Immediate redirect to thanks.php
+5. thanks.php displays for minimum 2 seconds (pixel firing)
+6. Optional broker redirect after pixel completion
+
+## 🔄 CRM API Redirect Logic (CRITICAL)
+
+### **CRM API Integration**
+- **Endpoint**: `https://slm.api.vibero.tech/clients/lead`
+- **API Key**: `Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ`
+- **Method**: POST with JSON data
+- **Headers**: `x-api-key` and `Content-Type: application/json`
+- **Response**: JSON with optional `redirect_url` field
+
+### **API Data Structure**
+```php
+$data = array(
+    "firstName" => $_POST['name'],
+    "lastName" => $_POST['lastname'],
+    "email" => $_POST['email'],
+    "phone" => $_POST['phone'],
+    "country" => "CA",
+    "lang" => "EN",
+    "marker" => isset($_GET['marker']) ? $_GET['marker'] : "",
+    "offer" => "Magnumator", // або "QuantumAI" залежно від проекту
+    "domain" => "",
+    "ip" => $_SERVER['REMOTE_ADDR'],
+    "sub_id_1" => isset($_GET['sub_id_1']) ? $_GET['sub_id_1'] : "",
+    "sub_id_2" => isset($_GET['sub_id_2']) ? $_GET['sub_id_2'] : "",
+    "sub_id_3" => isset($_GET['sub_id_3']) ? $_GET['sub_id_3'] : $_SERVER['HTTP_USER_AGENT'],
+    "sub_id_4" => isset($_GET['sub_id_4']) ? $_GET['sub_id_4'] : (isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : ""),
+    "utm_medium" => isset($_GET['utm_medium']) ? $_GET['utm_medium'] : "",
+    "utm_content" => isset($_GET['utm_content']) ? $_GET['utm_content'] : "",
+    "utm_campaign" => isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : "",
+    "utm_source" => isset($_GET['utm_source']) ? $_GET['utm_source'] : "",
+    "utm_term" => isset($_GET['utm_term']) ? $_GET['utm_term'] : ""
+);
+```
+
+### **cURL Configuration for New API**
+```php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://slm.api.vibero.tech/clients/lead',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 3, // 3 seconds timeout
+    CURLOPT_CONNECTTIMEOUT => 2, // 2 seconds connect timeout
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => json_encode($data), // JSON format
+    CURLOPT_HTTPHEADER => array(
+        'x-api-key: Og00Z1h-skZfY4IY-GMxzH73NjX6AwQZ',
+        'Content-Type: application/json'
+    ),
+));
+```
+
+### **Redirect Logic in api.php**
+```php
+// Parse CRM API response
+$json_response = json_decode($response, true);
+
+// Check for redirect_url in CRM response
+if (!empty($json_response) && isset($json_response['redirect_url']) && !empty($json_response['redirect_url'])) {
+    $redirect_url = $json_response['redirect_url'];
+    // Add tracking parameters to broker URL
+    if (!empty($result)) {
+        $separator = strpos($redirect_url, '?') !== false ? '&' : '?';
+        $redirect_url .= $separator . http_build_query($result);
+    }
+    // Pass redirect_url as parameter 'r' to thanks.php
+    $result['r'] = $redirect_url;
+}
+
+// ALWAYS redirect to thanks.php for pixel firing
+header("Location: thanks.php?" . http_build_query($result));
+```
+
+### **Thanks.php Conditional Redirect**
+```php
+// Extract redirect URL from parameter
+$redirectUrl = null;
+if (isset($_GET['r']) && filter_var($_GET['r'], FILTER_VALIDATE_URL)) {
+    $redirectUrl = $_GET['r'];
+}
+```
+
+```javascript
+// Conditional redirect after EXACTLY 2 seconds
+<?php if ($redirectUrl): ?>
+<script>
+  setTimeout(function() {
+    window.location.href = "<?= $redirectUrl ?>";
+  }, 2000); // 2 seconds = 2000ms
+</script>
+<?php endif; ?>
+```
+
+### **User Journey Scenarios**
+
+**Scenario A: CRM Returns redirect_url**
+- Form → api.php (1-2s) → thanks.php?r=broker_url
+- Thanks page displays for 2 seconds (pixels fire)
+- Automatic redirect to broker URL
+
+**Scenario B: CRM Does NOT Return redirect_url**
+- Form → api.php (1-2s) → thanks.php (no 'r' parameter)
+- Thanks page displays INDEFINITELY
+- No further redirect occurs
+
+### **Critical Requirements**
+- ✅ ALWAYS redirect to thanks.php first (never direct to broker)
+- ✅ EXACTLY 2 seconds delay before broker redirect
+- ✅ 100% pixel firing guarantee
+- ✅ URL validation for security (`filter_var(..., FILTER_VALIDATE_URL)`)
+- ✅ Tracking parameters preserved in broker URL
+
+### File Path Conventions
+- Reference project: `wwwcontent/api.php`, `wwwcontent/thanks.php`
+- TRFG projects: `api.php`, `thanks.php` (root level) OR `wwwcontent/` structure
+
+## Logging Requirements
+- **Data Logging**: Log all submitted data to `log_submit_data2.txt`
+- **Response Logging**: Log API responses to `log_submit_data.txt`
+- **Lead Logging**: Log leads to `log_submit_data_leads.txt` in tab-separated format
+- **Performance Logging**: Continue using `performance_log.txt` for timing analysis
+
+### **Logging Implementation**
+```php
+// Log submitted data
+file_put_contents('log_submit_data2.txt', date('Y-m-d H:i:s', strtotime('+3 hours')).PHP_EOL .print_r($data, true).PHP_EOL, FILE_APPEND);
+
+// Log API response
+file_put_contents('log_submit_data.txt', date('Y-m-d H:i:s', strtotime('+2 hours')).PHP_EOL .'RESPONSE: '.print_r($response, true).PHP_EOL.PHP_EOL, FILE_APPEND);
+
+// Log leads in tab-separated format
+file_put_contents('log_submit_data_leads.txt', date("Y-m-d H:i:s")."\t".json_decode('"'.str_replace('"', '\\"', json_encode($data)).'"')."\t".$response.PHP_EOL, FILE_APPEND);
+
+// Conversion tracking (if subid is available)
+if (!empty($_POST['subid'])) {
+    file_get_contents('https://investhorizon.biz/click?cnv_id=' . urlencode($_POST['subid']) . '&payout=0&cnv_status=lead');
+}
+```
+
+## Development Guidelines
+- Always maintain existing functionality while optimizing performance
+- Use performance logging for debugging slow operations
+- Preserve all tracking parameters (pixel, aw, camp_id)
+- Test form submission speed after any changes
+- Ensure 100% pixel firing before any redirects
+- Implement comprehensive logging for debugging and tracking
+
+## Security & Validation
+- Validate redirect URLs with filter_var(FILTER_VALIDATE_URL)
+- Use prepared statements for database operations
+- Sanitize all user inputs
+- Implement CSRF protection where applicable
+
+## Telegram Message Format
+Use HTML formatting with appropriate emojis:
+- 🚀 for Magnumator leads
+- 🤖 for QuantumAI leads
+- Include: name, phone, email, country, IP, domain, timestamp
+
+## Testing Requirements
+- Verify form submission completes in 1-2 seconds
+- Check performance_log.txt for timing analysis
+- Confirm Telegram notifications are received
+- Validate pixel firing on thanks.php
+- Test broker redirects when applicable
+- Verify new API endpoint responds correctly
+- Check all log files are created and populated
+- Test conversion tracking calls (if subid present)
+- Validate JSON data structure matches API requirements
+
+## Common Issues to Avoid
+- Long cURL timeouts causing delays
+- Missing jQuery dependencies
+- Blocking Telegram API calls
+- Missing performance logging
+- Incorrect file paths between projects
+- Incorrect API key or endpoint configuration
+- Missing JSON Content-Type header
+- Malformed JSON data structure
+- Missing required fields in API payload
+- Log file permission issues

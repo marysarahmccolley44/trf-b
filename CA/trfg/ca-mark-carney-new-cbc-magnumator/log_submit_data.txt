@@ -1,0 +1,45 @@
+2025-04-21 21:26:10
+RESPONSE: {"result":true,"id":41766,"code":"SUCCESS","message":"You get your lead id","redirect_url":"https://slm.api.vibero.tech/autologin/send/84b955b072ff66536ca772cb10886540"}
+
+2025-07-02 20:01:36
+RESPONSE: {"result":false,"code":"ERROR","message":"NOT VALID","redirect_url":null}
+
+2025-07-02 21:56:29
+RESPONSE: {"result":false,"code":"ERROR","message":"NOT VALID (BROKER ERROR)","redirect_url":null}
+
+2025-07-02 21:56:40
+RESPONSE: {"result":false,"code":"ERROR","message":"DUPLICATE","redirect_url":null}
+
+2025-07-02 21:58:51
+RESPONSE: {"result":false,"code":"ERROR","message":"DUPLICATE","redirect_url":null}
+
+2025-07-05 21:04:06
+RESPONSE: {"result":true,"id":58289,"code":"SUCCESS","message":"You get your lead id","redirect_url":""}
+
+2025-07-06 20:18:24
+RESPONSE: {"result":true,"id":58292,"code":"SUCCESS","message":"You get your lead id","redirect_url":""}
+
+2025-07-07 15:17:50
+RESPONSE: {"result":true,"id":58800,"code":"SUCCESS","message":"You get your lead id","redirect_url":"https://slm.api.vibero.tech/autologin/send/d1075cfe5d2d372a2a993e916750f8e9"}
+
+2025-07-07 17:09:02
+RESPONSE: {"result":true,"id":58821,"code":"SUCCESS","message":"You get your lead id","redirect_url":"https://slm.api.vibero.tech/autologin/send/f114ab0cb3abdfb526b727669064f8e5"}
+
+2025-07-07 18:58:16
+RESPONSE: {"result":true,"id":58833,"code":"SUCCESS","message":"You get your lead id","redirect_url":"https://slm.api.vibero.tech/autologin/send/73efe8cb7cf6199018f5bfff97f78eca"}
+
+2025-07-07 20:21:32
+RESPONSE: {"result":false,"code":"ERROR","message":{"email":["Email cannot be blank."],"firstname":["Firstname cannot be blank."],"lastname":["Lastname cannot be blank."],"phone":["Phone cannot be blank."]},"redirect_url":null}
+
+2025-07-07 20:21:35
+RESPONSE: {"result":false,"code":"ERROR","message":{"email":["Email cannot be blank."],"firstname":["Firstname cannot be blank."],"lastname":["Lastname cannot be blank."],"phone":["Phone cannot be blank."]},"redirect_url":null}
+
+2025-07-07 20:21:40
+RESPONSE: {"result":false,"code":"ERROR","message":{"email":["Email cannot be blank."],"firstname":["Firstname cannot be blank."],"lastname":["Lastname cannot be blank."],"phone":["Phone cannot be blank."]},"redirect_url":null}
+
+2025-07-07 20:21:42
+RESPONSE: {"result":false,"code":"ERROR","message":{"email":["Email cannot be blank."],"firstname":["Firstname cannot be blank."],"lastname":["Lastname cannot be blank."],"phone":["Phone cannot be blank."]},"redirect_url":null}
+
+2025-07-12 16:08:23
+RESPONSE: {"result":true,"id":59491,"code":"SUCCESS","message":"You get your lead id","redirect_url":""}
+

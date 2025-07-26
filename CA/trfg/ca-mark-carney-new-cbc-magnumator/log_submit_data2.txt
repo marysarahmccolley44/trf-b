@@ -1,0 +1,360 @@
+2025-04-21 22:26:05
+Array
+(
+    [firstName] => Douglas 
+    [lastName] => Gaudet
+    [email] => douggrgaudet@gmail.com
+    [phone] => +15878306554
+    [country] => CA
+    [lang] => EN
+    [marker] => Mell
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 207.148.176.176
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => tradewind.cfd
+    [utm_medium] => 
+    [utm_content] => 
+    [utm_campaign] => {campaignid}
+    [utm_source] => 
+    [utm_term] => {keyword}
+)
+
+2025-07-02 21:01:35
+Array
+(
+    [firstName] => François
+    [lastName] => Belairi 
+    [email] => francoisb2525@gmail.com
+    [phone] => +15813975211
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 2001:4958:2190:c701:f2fd:cf19:c52e:fc3d
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058358719/bG4dCL6b5uIaEL_Lh8Y_
+    [utm_content] => US_BROOKE_LAUREN_BOILLIN
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-02 22:56:25
+Array
+(
+    [firstName] => Elliot
+    [lastName] => William
+    [email] => koda16rap@gmail.com
+    [phone] => 6048499934
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 142.231.7.17
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058358719/bG4dCL6b5uIaEL_Lh8Y_
+    [utm_content] => US_BROOKE_LAUREN_BOILLIN
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-02 22:56:40
+Array
+(
+    [firstName] => Elliot
+    [lastName] => William
+    [email] => koda16rap@gmail.com
+    [phone] => 6048499934
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 142.231.7.17
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058358719/bG4dCL6b5uIaEL_Lh8Y_
+    [utm_content] => US_BROOKE_LAUREN_BOILLIN
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-02 22:58:51
+Array
+(
+    [firstName] => Elliot
+    [lastName] => William
+    [email] => koda16rap@gmail.com
+    [phone] => 6048499934
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 142.231.7.17
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058358719/bG4dCL6b5uIaEL_Lh8Y_
+    [utm_content] => US_BROOKE_LAUREN_BOILLIN
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-05 22:04:05
+Array
+(
+    [firstName] => MARIO
+    [lastName] => SAYO
+    [email] => mario.sayo1962@gmail.com
+    [phone] => +15879908309
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 2001:56a:fa37:7300:b0e4:983e:c923:66a3
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17270339891/wcSOCJzi9eYaELPykatA
+    [utm_content] => [GG,_dGen]_US501837789
+    [utm_campaign] => GG
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-06 21:18:23
+Array
+(
+    [firstName] => JEANROBERT
+    [lastName] => MAKANDA
+    [email] => romaduda1907@gmail.com
+    [phone] => +14168175756
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 96.44.197.17
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17270339891/wcSOCJzi9eYaELPykatA
+    [utm_content] => [GG,_dGen]_US501837789
+    [utm_campaign] => GG
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 16:17:38
+Array
+(
+    [firstName] => Shankar
+    [lastName] => KC
+    [email] => theshankarkc456@gmail.com
+    [phone] => +14163174781
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 2607:fea8:4ee3:cc00:d12d:8b63:2a92:1020
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/375.1.776343893 Mobile/15E148 Safari/604.1
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058079820/d_X4CM7F8-IaEMzI9sU_
+    [utm_content] => US_BRITTNEY_NICOLE_EDDOWES
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 18:08:50
+Array
+(
+    [firstName] => DAVE
+    [lastName] => WEIR
+    [email] => Dacweir@gmail.com
+    [phone] => +17802374796
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 2605:b100:71e:838:5052:cc1d:5d15:9226
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/375.1.776343893 Mobile/15E148 Safari/604.1
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17262411938/n_chCNvU9uYaEKKBrqdA
+    [utm_content] => [SV]_US464339586
+    [utm_campaign] => SVgclid=
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 19:58:09
+Array
+(
+    [firstName] => Sharma
+    [lastName] => Alexander 
+    [email] => smhagmail@gmail.com
+    [phone] => +16477086825
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 38.43.183.140
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17058214699/A-HRCO7lzeEaEKvm_sU_
+    [utm_content] => US_BRITTANY_ANN_OLIVER
+    [utm_campaign] => SV
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 21:21:32
+Array
+(
+    [firstName] => 
+    [lastName] => 
+    [email] => 
+    [phone] => 
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 208.98.223.56
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17262411938/n_chCNvU9uYaEKKBrqdA
+    [utm_content] => [SV]_US464339586
+    [utm_campaign] => SVgclid=
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 21:21:35
+Array
+(
+    [firstName] => 
+    [lastName] => 
+    [email] => 
+    [phone] => 
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 208.98.223.56
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17262411938/n_chCNvU9uYaEKKBrqdA
+    [utm_content] => [SV]_US464339586
+    [utm_campaign] => SVgclid=
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 21:21:40
+Array
+(
+    [firstName] => 
+    [lastName] => 
+    [email] => 
+    [phone] => 
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 208.98.223.56
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17262411938/n_chCNvU9uYaEKKBrqdA
+    [utm_content] => [SV]_US464339586
+    [utm_campaign] => SVgclid=
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-07 21:21:41
+Array
+(
+    [firstName] => 
+    [lastName] => 
+    [email] => 
+    [phone] => 
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 208.98.223.56
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17262411938/n_chCNvU9uYaEKKBrqdA
+    [utm_content] => [SV]_US464339586
+    [utm_campaign] => SVgclid=
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
+2025-07-12 17:08:20
+Array
+(
+    [firstName] => Cliff
+    [lastName] => Humes
+    [email] => cliff3789@gmail.com
+    [phone] => +12896803929
+    [country] => CA
+    [lang] => EN
+    [marker] => Gio
+    [offer] => Magnumator
+    [domain] => 
+    [ip] => 76.67.14.195
+    [sub_id_1] => 
+    [sub_id_2] => 
+    [sub_id_3] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+    [sub_id_4] => investgrowth.cfd
+    [utm_medium] => AW-17270339891/wcSOCJzi9eYaELPykatA
+    [utm_content] => [GG,_dGen]_US501837789
+    [utm_campaign] => GG
+    [utm_source] => GDN
+    [utm_term] => 
+)
+
